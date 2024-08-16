@@ -200,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
           <Logo>Logo</Logo>
         </GridItemWrapper>
         <GridItemWrapper $position={"end"}>
-          <CgDarkMode onClick={toggleTheme} size={20} title={"Toggle Theme"} />
+          <CgDarkMode onClick={toggleTheme} size={20} title={"Toggle Theme"} style={{cursor:"pointer"}} />
         </GridItemWrapper>
       </HeaderWrapper>
       <Overlay $isOpen={isOpen} onClick={toggleOverlay}>
