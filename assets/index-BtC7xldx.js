@@ -282,6 +282,8 @@ Error generating stack: `+o.message+`
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   padding-bottom: 48px;
+  max-width: 1350px;
+  margin: 0px auto;
 
   @media ${v.mediaQuaries.mdD} {
     grid-template-columns: 1fr;
@@ -412,10 +414,10 @@ Error generating stack: `+o.message+`
     width: 100%;
     padding: 24px 0px;
     // margin-bottom: 48px;
-    border-top: ${({theme:e})=>`1px solid ${e.invertedBackgroundColor}`};
-    border-bottom: ${({theme:e})=>`1px solid ${e.invertedBackgroundColor}`};
+    border-top: ${({theme:e})=>`1px solid ${(e==null?void 0:e.invertedBackgroundColor)||"black"}`};
+    border-bottom: ${({theme:e})=>`1px solid ${(e==null?void 0:e.invertedBackgroundColor)||"black"}`};
     text-align: left;
-    color: ${({theme:e})=>e.fontColor};
+    color: ${({theme:e})=>(e==null?void 0:e.fontColor)||"black"};
     @media ${v.mediaQuaries.mdD} {
         margin-bottom: 0px;
         padding: 16px 0px;
@@ -440,6 +442,8 @@ grid-column-gap: 24px;
 grid-row-gap: 24px;
 padding-top: 48px;
 padding-bottom: 48px;
+max-width: 1350px;
+margin: 0px auto;
 
 @media ${v.mediaQuaries.mdD} {
     width: min(500px, 100%);
@@ -547,6 +551,8 @@ grid-column-gap: 24px;
 grid-row-gap: 24px;
 padding-top: 48px;
 padding-bottom: 48px;
+max-width: 1350px;
+margin: 0px auto;
 
 @media ${v.mediaQuaries.mdD} {
     grid-template-columns: auto;
@@ -569,6 +575,8 @@ padding-bottom: 48px;
     grid-row-gap: 24px;
     padding-top: 48px;
     padding-bottom: 48px;
+    max-width: 1350px;
+    margin: 0px auto;
 
     @media ${v.mediaQuaries.mdD} {
         grid-template-columns: auto;
