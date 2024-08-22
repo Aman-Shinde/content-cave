@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import NavigationBar from "./components/NavigationBar";
 import brandIndetity from "./BrandIdentity";
 import { ThemeProvider, createGlobalStyle, styled } from "styled-components";
@@ -8,6 +8,7 @@ import Sections1 from './views/Sections1';
 import Footer from './components/Footer';
 import Sections2 from './views/Sections2';
 import Sections3 from './views/Sections3';
+import Article from './pages/Article';
 
 
 export const lightTheme = {
@@ -66,6 +67,7 @@ function App() {
         <Sections1 />
         <Sections2 />
         <Sections3/>
+        {/* <Article/> */}
       </SectionWrapper>
       <Footer/>
     </ThemeProvider>

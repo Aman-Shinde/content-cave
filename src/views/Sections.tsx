@@ -11,6 +11,8 @@ const GridContainer = styled.div`
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   padding-bottom: 48px;
+  max-width: 1350px;
+  margin: 0px auto;
 
   @media ${brandIndetity.mediaQuaries.mdD} {
     grid-template-columns: 1fr;

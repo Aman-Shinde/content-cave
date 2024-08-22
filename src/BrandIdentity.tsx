@@ -219,7 +219,7 @@ interface BrandIdentity {
     mediaQuaries: MediaQuaries;
 }
 
-const brandIndetity: BrandIdentity = {
+const brandIdentity: BrandIdentity = {
     logo: "./logo.png",
     navigation,
     subNavigation,
@@ -232,4 +232,4 @@ const brandIndetity: BrandIdentity = {
     mediaQuaries
 }
 
-export default brandIndetity
+export default brandIdentity
