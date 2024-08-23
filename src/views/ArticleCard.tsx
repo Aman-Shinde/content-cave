@@ -45,12 +45,14 @@ const Tag = styled.a`
     }
 `;
 
-const Title = styled.h2`
+const Title = styled.a`
     font-family: ${brandIndetity.typography.articleCardTitle.fontFamily};
     font-size: ${brandIndetity.typography.articleCardTitle.fontSize};
     font-weight: ${brandIndetity.typography.articleCardTitle.fontWeight};
     line-height: ${brandIndetity.typography.articleCardTitle.lineHeight};
     margin-bottom: 4px;
+    text-decoration: none;
+    color: ${({ theme }) => theme.fontColor};
 
     @media ${brandIndetity.mediaQuaries.smD} {
         font-size: ${brandIndetity.typography.articleCardTitle.smFontSize}
@@ -104,7 +106,7 @@ function ArticleCard({ title, subtitle, byline, tag, imgurl }: componentProps) {
             <ArticleCardContent>
 
                 <Tag href="#">{tag}</Tag>
-                <Title>{title}</Title>
+                <Title href="#article">{title}</Title>
                 <Subtitle>{subtitle}</Subtitle>
                 <Byline>- By <By href="#">{byline}</By></Byline>
 

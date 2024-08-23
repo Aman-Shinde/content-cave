@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { styled } from 'styled-components'
 import brandIdentity from '../BrandIdentity';
 import Sections2 from '../views/Sections2';
@@ -172,7 +172,7 @@ const ArticleBody = styled.div`
 
     img {
         display: block;
-        max-width: 100%;
+        width: 100%;
         margin: 16px 0;
     }
 
@@ -249,6 +249,143 @@ const ArticleBody = styled.div`
     }
 `;
 
+const ImagesSideBySide = styled.div`
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    gap: 24px;
+    justify-content: space-between;
+    @media and ${brandIdentity.mediaQuaries.smD} {
+        flex-direction: column;
+    }
+
+    img {
+        min-width: 48%;
+    }
+`;
+
+const Product = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 16px 0;
+
+    img {
+        margin: 0px;
+        max-width: 250px;
+        margin-right: 16px;
+    }
+
+    @media ${brandIdentity.mediaQuaries.mdD} {
+        
+        & {
+            flex-direction: column;
+        }
+
+        img {
+            margin: 0px auto;
+            margin-bottom: 16px;
+        }
+    }
+`;
+
+const ProductInfo = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin-bottom: 8px;
+        font-family: ${brandIdentity.typography.headings.fontFamily};
+        font-size: ${brandIdentity.typography.headings.fontSize};
+        font-weight: ${brandIdentity.typography.headings.fontWeight};
+        line-height: ${brandIdentity.typography.headings.lineHeight};
+        color: ${({ theme }) => theme.fontColor};
+
+        @media ${brandIdentity.mediaQuaries.smD} {
+            font-size: ${brandIdentity.typography.headings.smFontSize};
+        }
+    }
+
+    p {
+        margin-bottom: 8px;
+        font-family: ${brandIdentity.typography.bodyText.fontFamily};
+        font-size: ${brandIdentity.typography.bodyText.fontSize};
+        font-weight: ${brandIdentity.typography.bodyText.fontWeight};
+        line-height: ${brandIdentity.typography.bodyText.lineHeight};
+        color: ${({ theme }) => theme.fontColor};
+        @media ${brandIdentity.mediaQuaries.smD} {
+            font-size: ${brandIdentity.typography.bodyText.smFontSize};
+        }
+    }
+    @media ${brandIdentity.mediaQuaries.mdD} {
+        & {
+            text-align: center;
+        }
+    }
+`;
+
+const PriceButtonWrapper = styled.div`
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`;
+
+const PriceButton = styled.button`
+    width: 40%;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+
+    &:hover {
+        background-color: ${({ theme }) => theme.backgroundColor};
+        color: ${({ theme }) => theme.fontColor};
+        border: ${({ theme }) => `1px solid ${theme.fontColor}`};
+    }
+
+    &:active {
+
+    }
+
+    @media ${brandIdentity.mediaQuaries.mdD} {
+        & {
+            margin: 0px auto;
+        }
+    }
+    
+`;
+
+const ProductPrice = styled(PriceButton)`
+    background-color: ${({ theme }) => theme.backgroundColor};
+    color: ${({ theme }) => theme.fontColor};
+    border: ${({ theme }) => `1px solid ${theme.fontColor}`};
+    cursor: not-allowed;
+    text-decoration: line-through;
+
+    &:hover {
+        background-color: ${({ theme }) => theme.invertedBackgroundColor};
+        color: ${({ theme }) => theme.invertedFontColor};
+        border: ${({ theme }) => `1px solid ${theme.invertedFontColor}`};
+    }
+`;
+
+const OfferPrice = styled(PriceButton)`
+    background-color: ${({ theme }) => theme.invertedBackgroundColor};
+    color: ${({ theme }) => theme.invertedFontColor};
+    border: ${({ theme }) => `1px solid ${theme.invertedFontColor}`};
+
+    &:hover {
+        background-color: ${({ theme }) => theme.backgroundColor};
+        color: ${({ theme }) => theme.fontColor};
+        border: ${({ theme }) => `1px solid ${theme.fontColor}`};
+    }
+`;
 
 const ArticleFooter = styled.div`
     padding: 24px 0px;
@@ -282,6 +419,16 @@ const Tag = styled.span`
 
 
 function Article() {
+
+    useEffect(() => {
+        setTimeout(() => {
+            const mainContainer = document.querySelector('.main-container');
+            if (mainContainer) {
+                mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 500)
+    }, [])
+
     return (
         <>
 
@@ -320,6 +467,13 @@ function Article() {
 
                     <img src="https://via.placeholder.com/600x300" alt="React Functional Components" />
 
+                    <ImagesSideBySide>
+
+                        <img src="https://via.placeholder.com/600x300" alt="React Functional Components" />
+                        <img src="https://via.placeholder.com/600x300" alt="React Functional Components" />
+
+                    </ImagesSideBySide>
+
                     <h3>Class Components</h3>
                     <p>
                         Class components are ES6 classes that extend from React.Component. They can hold and manage state,
@@ -339,46 +493,68 @@ function Article() {
                     </p>
 
                     <h2>Featured Product</h2>
-                    <div className="product">
-                        <img src="https://via.placeholder.com/300x300" alt="Product Image" />
-                        <div className="product-info">
-                            <h3>React Guidebook</h3>
-                            <p>Master React with this comprehensive guide that covers all the basics and advanced concepts.</p>
-                        </div>
-                        <div className="product-price">$29.99</div>
-                    </div>
 
-                    <p>
-                        Using components effectively can drastically reduce the complexity of your application and help you build
-                        scalable and maintainable software.
-                    </p>
+                    <Product>
 
-                    <h2>Featured Product</h2>
+                        <img src="https://via.placeholder.com/300x300" alt="Product Image" />
 
-                    <div className="product">
-                        <img src="https://via.placeholder.com/300x300" alt="Product Image" />
-                        <div className="product-info">
+                        <ProductInfo>
+
                             <h3>React Guidebook</h3>
                             <p>Master React with this comprehensive guide that covers all the basics and advanced concepts.</p>
-                        </div>
-                        <div className="product-price">$29.99</div>
-                    </div>
-                    <div className="product">
+
+                            <PriceButtonWrapper>
+
+                                <ProductPrice>&nbsp;&nbsp; $39.99 &nbsp;&nbsp;</ProductPrice>
+                                <OfferPrice>$29.99</OfferPrice>
+
+                            </PriceButtonWrapper>
+
+                        </ProductInfo>
+
+                    </Product>
+
+                    <Product>
+
                         <img src="https://via.placeholder.com/300x300" alt="Product Image" />
-                        <div className="product-info">
+
+                        <ProductInfo>
+
                             <h3>React Guidebook</h3>
                             <p>Master React with this comprehensive guide that covers all the basics and advanced concepts.</p>
-                        </div>
-                        <div className="product-price">$29.99</div>
-                    </div>
-                    <div className="product">
+
+                            <PriceButtonWrapper>
+
+                                <ProductPrice>&nbsp;&nbsp; $39.99 &nbsp;&nbsp;</ProductPrice>
+                                <OfferPrice>$29.99</OfferPrice>
+
+                            </PriceButtonWrapper>
+
+                        </ProductInfo>
+
+                    </Product>
+
+                    <Product>
+
                         <img src="https://via.placeholder.com/300x300" alt="Product Image" />
-                        <div className="product-info">
+
+                        <ProductInfo>
+
                             <h3>React Guidebook</h3>
                             <p>Master React with this comprehensive guide that covers all the basics and advanced concepts.</p>
-                        </div>
-                        <div className="product-price">$29.99</div>
-                    </div>
+
+                            <PriceButtonWrapper>
+
+                                <ProductPrice>&nbsp;&nbsp; $39.99 &nbsp;&nbsp;</ProductPrice>
+                                <OfferPrice>$29.99</OfferPrice>
+
+                            </PriceButtonWrapper>
+
+                        </ProductInfo>
+
+                    </Product>
+
+
                 </ArticleBody>
 
 
